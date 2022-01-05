@@ -2,6 +2,8 @@ import Layout from "../../components/layout";
 import PostASTParser from "../../components/Post/PostASTParser";
 import PostCategory from "../../components/Post/PostCategory";
 import PostTitle from "../../components/Post/PostTitle";
+import PostTOC from "../../components/Post/PostTOC";
+import PostTOCItem from "../../components/Post/PostTOCItem";
 import { getAllPostIds, getPostData } from "../../lib/posts";
 import { PostObject } from "../../types/posts";
 
@@ -11,7 +13,6 @@ type postProps = {
 
 const PostPage = ({ postData }: postProps) => {
   const { title, children, description, categories, date } = postData;
-  console.log(postData);
 
   return (
     <Layout title={title}>
@@ -30,11 +31,20 @@ const PostPage = ({ postData }: postProps) => {
                 {categories.map((item, index) => (
                   <PostCategory key={index} category={item} />
                 ))}
+                <p className="mt-10 cursor-pointer text-blue-400">
+                  ← Back to the blog
+                </p>
               </div>
               <div className="col-span-3">
-                {children.map((item) => (
-                  <PostASTParser ast={item} />
-                ))}
+                <div className="bg-gray-50 px-4 py-4">
+                  <p className="text-xl mb-4">Table of Contents</p>
+                  <PostTOC children={children} />
+                </div>
+                <div>
+                  {children.map((item) => (
+                    <PostASTParser ast={item} />
+                  ))}
+                </div>
               </div>
             </div>
 

@@ -14,9 +14,9 @@ Normally I tend to evaluate my goals according to a few different dimensions
 3. Professional
 4. Social
 
-I've found that I'm a bit of a dumbass so having a bit more of a simple way to audit my goals is probably the best. Let's tackle them one by one.
-
 ## Emotional
+
+I've found that I'm a bit of a dumbass so having a bit more of a simple way to audit my goals is probably the best. Let's tackle them one by one.
 
 > Give me six hours to chop down a tree and I will spend the first four sharpening the axe
 
