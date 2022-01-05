@@ -28,7 +28,11 @@ const PostASTParser = ({ ast }: PostASTParserProps) => {
       const children = ast.children.map((item, index) => (
         <PostASTParser key={`Link-${index}`} ast={item} />
       ));
-      return <SmartLink url={ast.url} link={children} />;
+      return (
+        <span className="text-base font-medium rounded-md text-indigo-600 underline py-2 hover:bg-indigo-700">
+          <SmartLink url={ast.url} link={children} />
+        </span>
+      );
     case "blockquote":
       return (
         <>

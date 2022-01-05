@@ -1,8 +1,12 @@
 import Link from "next/link";
 import NavigationLinks from "./Header/NavigationLinks";
 import Head from "next/head";
+import Footer from "./Footer";
 
-const navigation = [{ name: "Articles", href: "/articles" }];
+const navigation = [
+  { name: "Articles", href: "/articles" },
+  { name: "Notes", href: "https://ivanleomk.github.io/quartz/" },
+];
 
 type LayoutProps = {
   children: any;
@@ -21,7 +25,7 @@ const Layout = ({ children, title }: LayoutProps) => {
           aria-label="Top"
         >
           <div className="w-full py-6 flex items-center justify-between border-none">
-            <h1 className="hidden h-6 text-2xl font-semibold sm:block">
+            <h1 className="h-6 text-2xl font-semibold sm:block">
               <Link href="/">Ivan Leo</Link>
             </h1>
             <div className="flex items-center">
@@ -33,6 +37,7 @@ const Layout = ({ children, title }: LayoutProps) => {
       <div className="max-w-3xl px-4 mx-auto sm:px-6 xl:max-w-5xl xl:px-0">
         {children}
       </div>
+      <Footer navigation={navigation} />
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { NavigationLink } from "../../types/globalTypes";
+import SmartLink from "../SmartLink";
 
 type NavigationLinksProps = {
   navigation: NavigationLink[];
@@ -8,16 +9,16 @@ type NavigationLinksProps = {
 
 const NavigationLinks = ({ navigation }: NavigationLinksProps) => {
   return (
-    <div className="ml-10 space-x-8 lg:block leading-5">
-      {navigation.map((link) => (
-        <div
-          key={link.name}
-          className="p-1 font-medium text-gray-900 sm:p-4 dark:text-gray-100"
-        >
-          <Link href={link.href}>{link.name}</Link>
-        </div>
-      ))}
-    </div>
+    <>
+      {navigation.map((link) => {
+        const { name, href } = link;
+        return (
+          <div className="px-4 cursor-pointer" key={name}>
+            <SmartLink link={name} url={href} />
+          </div>
+        );
+      })}
+    </>
   );
 };
 

@@ -1,13 +1,12 @@
-import Head from "next/head";
+import Layout from "../components/layout";
+import Hero from "../components/Hero";
+import AboutMe from "../components/AboutMe";
 
 export default function Home() {
   return (
-    <div>
-      <Head>
-        <title>Ivan's Blog</title>
-      </Head>
-
-      <h1 className="bg-red-400">Hello world!</h1>
-    </div>
+    <Layout title={"Ivan's Site"}>
+      <Hero />
+      <AboutMe />
+    </Layout>
   );
 }
