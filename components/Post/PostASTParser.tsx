@@ -10,6 +10,10 @@ type PostASTParserProps = {
   ast: AST_NODE;
 };
 
+// TODO
+// 1. Add support for bold/italic/underlined text
+// 2. Add support for tables. I don't have a current implementation for this
+
 const PostASTParser = ({ ast }: PostASTParserProps) => {
   switch (ast.type) {
     case "heading":
