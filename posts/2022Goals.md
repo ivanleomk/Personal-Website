@@ -18,6 +18,8 @@ I've found that I'm a bit of a dumbass so having a bit more of a simple way to a
 
 ## Emotional
 
+> Give me six hours to chop down a tree and I will spend the first four sharpening the axe
+
 Last year was pretty tough for me. I went through a rather big breakup and I did not take it well. I spent a lot of time dealing with significantly more anxiety and this largely affected my ability to work, think and function.
 
 I was fortunate enough to recieve some good counselling and have the support of my friends. As a result, this enabled me to bounce back a lot strong from it.
@@ -40,9 +42,7 @@ I think that some good lead measures could potentially be
 2. Number of minutes spent meditating per day
 3. Number of perfect days where I manage to hit all 3 things - gratitude journalling, meditation and low dopamine intakes
 
-I'll probably write a little more about how my dopamine detox will be like soon. Having a bit more of a concrete measure will be nice to refer to from time to time.
-
-I think that some good lag measures could potentially be
+I'll probably write a little more about how my dopamine detox will be like soon. Having a bit more of a concrete measure will be nice to refer to from time to time. I think that some good lag measures could potentially be
 
 1. General Lifestyle Happiness - I'm going to measure this very roughly and just ask myself to rate my happiness every few days. If there's an overall trend, i'll notice it.
 

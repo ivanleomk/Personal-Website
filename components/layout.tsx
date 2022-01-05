@@ -2,7 +2,7 @@ import Link from "next/link";
 import NavigationLinks from "./Header/NavigationLinks";
 import Head from "next/head";
 
-const navigation = [{ name: "Articles", href: "/blog" }];
+const navigation = [{ name: "Articles", href: "/articles" }];
 
 type LayoutProps = {
   children: any;

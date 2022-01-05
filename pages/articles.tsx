@@ -10,7 +10,6 @@ type BlogProps = {
 };
 
 const Articles = ({ allPostsData, categoryData }: BlogProps) => {
-  console.log(categoryData);
   return (
     <Layout title="Articles">
       <main className="mb-auto divide-y divide-gray-200 dark:divide-gray-700">

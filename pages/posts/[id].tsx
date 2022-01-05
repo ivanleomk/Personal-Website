@@ -1,5 +1,6 @@
-import Head from "next/head";
 import Layout from "../../components/layout";
+import PostASTParser from "../../components/Post/PostASTParser";
+import PostCategory from "../../components/Post/PostCategory";
 import PostTitle from "../../components/Post/PostTitle";
 import { getAllPostIds, getPostData } from "../../lib/posts";
 import { PostObject } from "../../types/posts";
@@ -9,17 +10,35 @@ type postProps = {
 };
 
 const PostPage = ({ postData }: postProps) => {
-  const { title, contentHtml, description } = postData;
+  const { title, children, description, categories, date } = postData;
+  console.log(postData);
+
   return (
-    <div>
-      <Head>
-        <title>{title}</title>
-      </Head>
-      <div className="relative py-16 bg-white overflow-hidden">
-        <div className="relative px-4 sm:px-6 lg:px-8">
-          <PostTitle title={title} description={description} />
-          <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
-          {/* <div className="mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
+    <Layout title={title}>
+      <div>
+        <div className="relative  bg-white overflow-hidden">
+          <div className="relative px-4 sm:px-6 lg:px-8">
+            <PostTitle
+              title={title}
+              description={description}
+              categories={categories}
+              date={date}
+            />
+            <div className="pb-8 divide-y divide-gray-200 xl:divide-y-0 dark:divide-gray-700 xl:grid xl:grid-cols-4 xl:gap-x-6 mt-10">
+              <div>
+                <div className="prose prose-lg">Tags</div>
+                {categories.map((item, index) => (
+                  <PostCategory key={index} category={item} />
+                ))}
+              </div>
+              <div className="col-span-3">
+                {children.map((item) => (
+                  <PostASTParser ast={item} />
+                ))}
+              </div>
+            </div>
+
+            {/* <div className="mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
             <p>
               Faucibus commodo massa rhoncus, volutpat.{" "}
               <strong>Dignissim</strong> sed <strong>eget risus enim</strong>.
@@ -93,9 +112,10 @@ const PostPage = ({ postData }: postProps) => {
               neque erat velit.
             </p>
           </div> */}
+          </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

@@ -6,10 +6,9 @@ import PostCategory from "./PostCategory";
 
 type PostCardProps = {
   Post: PostObject;
-  key: string;
 };
 
-const PostCard = ({ Post, key }: PostCardProps) => {
+const PostCard = ({ Post }: PostCardProps) => {
   const { title, date, id, categories, description } = Post;
 
   return (
@@ -47,13 +46,6 @@ const PostCard = ({ Post, key }: PostCardProps) => {
         </div>
       </div>
     </article>
-    // <li key={id}>
-    //   {title}
-    //   <br />
-    //   {id}
-    //   <br />
-    //   {date}
-    // </li>
   );
 };
 
