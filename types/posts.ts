@@ -20,7 +20,8 @@ export type AST_NODE_TYPE =
   | "link"
   | "blockquote"
   | "code"
-  | "list";
+  | "list"
+  | "table";
 
 type AST_NODE_POSITION = {
   start: position_reference;
@@ -72,4 +73,11 @@ export type AST_NODE =
       children: AST_NODE[];
       spread: false;
       start: number;
+    }
+  | {
+      type: "table";
+      headers: string[];
+      rows: string[][];
+      position: AST_NODE_POSITION;
+      children: [];
     };

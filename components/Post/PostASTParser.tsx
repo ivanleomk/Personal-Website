@@ -5,6 +5,7 @@ import SmartLink from "../SmartLink";
 import PostCodeChunk from "./PostCodeChunk";
 import PostHeading from "./PostHeading";
 import PostList from "./PostList";
+import PostTable from "./PostTable";
 
 type PostASTParserProps = {
   ast: AST_NODE;
@@ -65,6 +66,8 @@ const PostASTParser = ({ ast }: PostASTParserProps) => {
       return <PostCodeChunk ast={ast} />;
     case "list":
       return <PostList ast={ast} />;
+    case "table":
+      return <PostTable ast={ast} />;
     default:
       return <>Parsed</>;
   }

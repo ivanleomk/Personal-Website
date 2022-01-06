@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Layout from "../../components/layout";
 import PostASTParser from "../../components/Post/PostASTParser";
 import PostCategory from "../../components/Post/PostCategory";
@@ -13,7 +14,7 @@ type postProps = {
 
 const PostPage = ({ postData }: postProps) => {
   const { title, children, description, categories, date } = postData;
-
+  console.log(postData);
   return (
     <Layout title={title}>
       <div>
@@ -32,11 +33,11 @@ const PostPage = ({ postData }: postProps) => {
                   <PostCategory key={index} category={item} />
                 ))}
                 <p className="mt-10 cursor-pointer text-blue-400">
-                  ← Back to the blog
+                  <Link href="/articles">← Back to the blog</Link>
                 </p>
               </div>
               <div className="col-span-3">
-                <div className="bg-gray-50 px-4 py-4">
+                <div className="bg-gray-50 px-4 py-4 mb-10">
                   <p className="text-xl mb-4">Table of Contents</p>
                   <PostTOC children={children} />
                 </div>
