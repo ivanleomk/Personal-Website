@@ -1,10 +1,4 @@
 import React from "react";
-import { AST_NODE } from "../../types/posts";
-import PostASTParser from "./PostASTParser";
-
-type PostHeadingProps = {
-  ast: AST_NODE;
-};
 
 const styling = {
   1: "mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl",
@@ -15,18 +9,13 @@ const styling = {
   6: "mt-2 text-md leading-8 font-semibold tracking-tight text-gray-900 sm:text-md",
 };
 
-const PostHeading = ({ ast }: PostHeadingProps) => {
-  if (ast.type !== "heading") {
-    return null;
-  }
-
-  return (
-    <p className={styling[ast.depth]}>
-      {ast.children.map((item, index) => (
-        <PostASTParser key={`Heading-${ast.depth}-index`} ast={item} />
-      ))}
-    </p>
-  );
+type HeadingProps = {
+  depth: number;
+  children: any;
 };
 
-export default PostHeading;
+const Heading = ({ depth, children }: HeadingProps) => {
+  return <p className={styling[depth]}>{children}</p>;
+};
+
+export default Heading;

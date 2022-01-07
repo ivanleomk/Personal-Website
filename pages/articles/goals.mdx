@@ -1,20 +1,16 @@
----
-title: "My 2022 Plans"
-description: "A brief outline of what I hope to achieve in this year and my plans thus far"
-date: "2022-01-03"
-categories: "Reflections, Goal-Setting"
----
+import Post from "./index";
 
-- [The Framework](#the-framework)
-  - [Emotional](#emotional)
-  - [Physical](#physical)
-  - [Professional](#professional)
-  - [Financial](#financial)
-- [Food For Thought](#food-for-thought)
+export const meta = {
+  title: "My 2022 Plans",
+  description:
+    "A brief outline of what I hope to achieve in this year and my plans thus far",
+  date: "2022-01-03",
+  categories: ["Reflections", "Goal-Setting"],
+};
 
 # The Framework
 
-2022 is finally here and I'm super excited for the year ahead. I'll just briefly outline my goals according to a few different dimensions - emotional, physical ,professional and financial.
+2022 is finally here and I'm super excited for the year ahead. I'll just briefly outline my goals according to a few different dimensions - **emotional, physical ,professional and financial**.
 
 ## Emotional
 
@@ -67,8 +63,6 @@ I don't really have a solid plan for this at the moment because most of my atten
 
 ## Financial
 
-This is a WIP.
-
 # Food For Thought
 
 Some interesting things I'm trying this year
@@ -78,3 +72,7 @@ Some interesting things I'm trying this year
 3. Dopamine detox
 
 Hope I succeed lol.
+
+export default ({ children }) => <Post meta={meta}>{children}</Post>;
+
+>

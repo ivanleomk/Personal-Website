@@ -1,15 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { getSortedPostsData } from "../lib/posts";
 import Layout from "../components/layout";
 import PostCard from "../components/Post/PostCard";
-import { PostObject } from "../types/posts";
+import { Article } from "../types/posts";
+import { getSortedPosts } from "../lib/articles";
+import SearchBar from "../components/SearchBar";
+import Fuse from "fuse.js";
 
-type BlogProps = {
-  allPostsData: PostObject[];
-  categoryData: string[];
+type ArticlesProp = {
+  articles: Article[];
 };
 
-const Articles = ({ allPostsData, categoryData }: BlogProps) => {
+const Articles = ({ articles }: ArticlesProp) => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [articleList, setArticleList] = useState([]);
+
+  const fuse = new Fuse(articles, {
+    includeScore: true,
+    keys: ["title", "description", "categories"],
+  });
+
+  const handleSearch = (term) => {};
+
+  useEffect(() => {
+    setArticleList(articles);
+  }, []);
+
+  useEffect(() => {
+    if (searchTerm === "") {
+      setArticleList(articles);
+      return;
+    }
+    console.log(fuse.search(searchTerm));
+    setArticleList(
+      fuse
+        .search(searchTerm)
+        .map(({ item }) => item)
+        .sort((item) => item.score)
+    );
+  }, [searchTerm]);
+
   return (
     <Layout title="Articles">
       <main className="mb-auto divide-y divide-gray-200 dark:divide-gray-700">
@@ -22,10 +52,14 @@ const Articles = ({ allPostsData, categoryData }: BlogProps) => {
             learnt, read and think about.
           </p>
         </div>
+
         <div className="py-10">
-          {allPostsData.map((PostObject, index) => (
-            <PostCard key={`Post-${index}`} Post={PostObject} />
-          ))}
+          <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+          {articleList
+            .filter((item) => item.display)
+            .map((item, index) => (
+              <PostCard key={index} Post={item} />
+            ))}
         </div>
       </main>
     </Layout>
@@ -33,17 +67,24 @@ const Articles = ({ allPostsData, categoryData }: BlogProps) => {
 };
 
 export async function getStaticProps() {
-  const allPostsData = getSortedPostsData();
-  const categoryData: string[] = allPostsData
-    .map((item) => item.categories)
-    .flat();
+  const allPosts = getSortedPosts();
 
   return {
     props: {
-      allPostsData,
-      categoryData: [...Array.from(new Set(categoryData))],
+      articles: allPosts,
     },
   };
+  // const allPostsData = getSortedPostsData();
+  // const categoryData: string[] = allPostsData
+  //   .map((item) => item.categories)
+  //   .flat();
+
+  // return {
+  //   props: {
+  //     allPostsData,
+  //     categoryData: [...Array.from(new Set(categoryData))],
+  //   },
+  // };
 }
 
 export default Articles;

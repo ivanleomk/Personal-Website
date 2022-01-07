@@ -1,5 +1,10 @@
-module.exports = {
-  images: {
-    domains: ["lh3.googleusercontent.com"],
+const withMDX = require("@next/mdx")({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [],
   },
-};
+});
+module.exports = withMDX({
+  pageExtensions: ["js", "jsx", "tsx", "md", "mdx"],
+});

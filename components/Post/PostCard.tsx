@@ -1,15 +1,15 @@
 import daysToWeeks from "date-fns/daysToWeeks/index";
 import Link from "next/link";
 import React from "react";
-import { PostObject } from "../../types/posts";
+import { Article, PostObject } from "../../types/posts";
 import PostCategory from "./PostCategory";
 
 type PostCardProps = {
-  Post: PostObject;
+  Post: Article;
 };
 
 const PostCard = ({ Post }: PostCardProps) => {
-  const { title, date, id, categories, description } = Post;
+  const { title, date, categories, description, slug } = Post;
 
   return (
     <article className="py-4">
@@ -23,7 +23,7 @@ const PostCard = ({ Post }: PostCardProps) => {
               <h2 className="text-2xl font-bold leading-8 tracking-tight cursor-pointer">
                 <a
                   className="text-gray-900 dark:text-gray-100"
-                  href={`/posts/${id}`}
+                  href={`/articles/${slug}`}
                 >
                   {title}
                 </a>
@@ -39,7 +39,7 @@ const PostCard = ({ Post }: PostCardProps) => {
             </div>
           </div>
           <div className="text-base font-medium leading-6 text-blue-500 hover:text-blue-600 dark:hover:text-blue-400">
-            <Link href={`/posts/${id}`} aria-label="Read More">
+            <Link href={`/articles/${slug}`} aria-label="Read More">
               Read more →
             </Link>
           </div>
