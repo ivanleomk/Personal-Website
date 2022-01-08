@@ -1,7 +1,7 @@
 import daysToWeeks from "date-fns/daysToWeeks/index";
 import Link from "next/link";
 import React from "react";
-import { Article, PostObject } from "../../types/posts";
+import { Article } from "../../types/posts";
 import PostCategory from "./PostCategory";
 
 type PostCardProps = {

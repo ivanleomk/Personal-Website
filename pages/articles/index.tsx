@@ -1,78 +1,78 @@
-import { MDXProvider } from "@mdx-js/react";
-import Image from "next/image";
-import Link from "next/link";
-import Blockquote from "../../components/Articles/Blockquote";
-import Heading from "../../components/Articles/Heading";
-import ListContainer from "../../components/Articles/ListContainer";
-import ListItem from "../../components/Articles/ListItem";
-import Paragraph from "../../components/Articles/Paragraph";
-import Table from "../../components/Articles/Table";
-import Thead from "../../components/Articles/Thead";
-import THeadCell from "../../components/Articles/THeadCell";
+import React, { useEffect, useState } from "react";
+import { getSortedPostsData } from "../../lib/posts";
 import Layout from "../../components/layout";
-import PostCategory from "../../components/Post/PostCategory";
-import PostTitle from "../../components/Post/PostTitle";
+import PostCard from "../../components/Post/PostCard";
+import { Article } from "../../types/posts";
+import { getSortedPosts } from "../../lib/articles";
+import SearchBar from "../../components/SearchBar";
+import Fuse from "fuse.js";
 
-const components = {
-  table: Table,
-  thead: Thead,
-  th: THeadCell,
-  h1: (props) => <Heading depth={1} {...props} />,
-  h2: (props) => <Heading depth={2} {...props} />,
-  h3: (props) => <Heading depth={3} {...props} />,
-  h4: (props) => <Heading depth={4} {...props} />,
-  h5: (props) => <Heading depth={5} {...props} />,
-  h6: (props) => <Heading depth={6} {...props} />,
-  p: Paragraph,
-  ol: (props) => <ListContainer ordered={true} {...props} />,
-  ul: (props) => <ListContainer ordered={false} {...props} />,
-  li: ListItem,
-  blockquote: Blockquote,
+type ArticlesProp = {
+  articles: Article[];
 };
 
-type metaProps = {
-  categories: string[];
-  date: string;
-  description: string;
-  title: string;
-};
+const Articles = ({ articles }: ArticlesProp) => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [articleList, setArticleList] = useState([]);
 
-const Post = (props) => {
-  const { meta, children } = props;
-  const { categories, date, description, title }: metaProps = meta;
+  const fuse = new Fuse(articles, {
+    includeScore: true,
+    keys: ["title", "description", "categories"],
+  });
+
+  useEffect(() => {
+    setArticleList(articles);
+  }, []);
+
+  useEffect(() => {
+    if (searchTerm === "") {
+      setArticleList(articles);
+      return;
+    }
+    setArticleList(
+      fuse
+        .search(searchTerm)
+        .map(({ item }) => item)
+        .sort((item) => item.score)
+    );
+  }, [searchTerm]);
+
+  console.log(articleList);
 
   return (
-    <MDXProvider components={components}>
-      <Layout title={title}>
-        <div>
-          <div className="relative  bg-white overflow-hidden">
-            <div className="relative px-4 sm:px-6 lg:px-8">
-              <PostTitle
-                title={title}
-                description={description}
-                categories={categories}
-                date={date}
-              />
-              <div className="pb-8 divide-y divide-gray-200 xl:divide-y-0 dark:divide-gray-700 xl:grid xl:grid-cols-4 xl:gap-x-6 mt-10">
-                <div>
-                  <div className="prose prose-lg">Tags</div>
-                  {categories.map((item, index) => (
-                    <PostCategory key={index} category={item} />
-                  ))}
-                  <p className="mt-10 cursor-pointer text-blue-400">
-                    <Link href="/articles">← Back to the blog</Link>
-                  </p>
-                </div>
-                <div className="col-span-3">
-                  <main {...props} />
-                </div>
-              </div>
-            </div>
-          </div>
+    <Layout title="Articles">
+      <main className="mb-auto divide-y divide-gray-200 dark:divide-gray-700">
+        <div className="pt-6 py-10 space-y-2 md:space-y-5 ">
+          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+            Latest
+          </h1>
+          <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
+            Welcome to my personal blog where I talk about things that I've
+            learnt, read and think about.
+          </p>
         </div>
-      </Layout>
-    </MDXProvider>
+
+        <div className="py-10">
+          <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+          {articleList
+            .filter((item) => item.display)
+            .map((item, index) => (
+              <PostCard key={index} Post={item} />
+            ))}
+        </div>
+      </main>
+    </Layout>
   );
 };
 
-export default Post;
+export async function getStaticProps() {
+  const allPosts = getSortedPosts();
+
+  return {
+    props: {
+      articles: allPosts,
+    },
+  };
+}
+
+export default Articles;
