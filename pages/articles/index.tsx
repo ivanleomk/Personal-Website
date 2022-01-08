@@ -14,11 +14,27 @@ type ArticlesProp = {
 const Articles = ({ articles }: ArticlesProp) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [articleList, setArticleList] = useState([]);
+  const [category, setCategory] = useState("");
 
   const fuse = new Fuse(articles, {
     includeScore: true,
     keys: ["title", "description", "categories"],
   });
+
+  const checkCategory = (category: string, categories: string[]) => {
+    if (category === "") {
+      return true;
+    }
+    return categories.includes(category);
+  };
+
+  useEffect(() => {
+    setArticleList((articles) =>
+      articles.map((item) => {
+        return { ...item, display: checkCategory(category, item.categories) };
+      })
+    );
+  }, [category]);
 
   useEffect(() => {
     setArticleList(articles);
@@ -37,8 +53,6 @@ const Articles = ({ articles }: ArticlesProp) => {
     );
   }, [searchTerm]);
 
-  console.log(articleList);
-
   return (
     <Layout title="Articles">
       <main className="mb-auto divide-y divide-gray-200 dark:divide-gray-700">
@@ -53,11 +67,19 @@ const Articles = ({ articles }: ArticlesProp) => {
         </div>
 
         <div className="py-10">
+          {category === "" ? null : (
+            <p className="py-2">
+              You have selected posts that are tagged as <b>{category}</b>.{" "}
+              <button className="" onClick={() => setCategory("")}>
+                Reset selection?
+              </button>
+            </p>
+          )}
           <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
           {articleList
             .filter((item) => item.display)
             .map((item, index) => (
-              <PostCard key={index} Post={item} />
+              <PostCard key={index} Post={item} setCategory={setCategory} />
             ))}
         </div>
       </main>
