@@ -4,7 +4,7 @@ import Head from "next/head";
 import Footer from "./Footer";
 
 const navigation = [
-  { name: "Articles", href: "/articles" },
+  { name: "Articles", href: "/articles/category/latest" },
   { name: "Notes", href: "https://ivanleomk.github.io/quartz/" },
 ];
 

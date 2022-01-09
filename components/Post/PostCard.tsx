@@ -6,10 +6,9 @@ import PostCategory from "./PostCategory";
 
 type PostCardProps = {
   Post: Article;
-  setCategory: (category: string) => void;
 };
 
-const PostCard = ({ Post, setCategory }: PostCardProps) => {
+const PostCard = ({ Post }: PostCardProps) => {
   const { title, date, categories, description, slug } = Post;
 
   return (
@@ -31,11 +30,7 @@ const PostCard = ({ Post, setCategory }: PostCardProps) => {
               </h2>
               <div className="flex flex-wrap pt-4">
                 {categories.map((item, ind) => (
-                  <PostCategory
-                    key={ind}
-                    category={item}
-                    setCategory={setCategory}
-                  />
+                  <PostCategory key={ind} category={item} />
                 ))}
               </div>
             </div>

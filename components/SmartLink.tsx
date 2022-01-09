@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 type SmartLinkProps = {
   link: any;
@@ -7,12 +8,13 @@ type SmartLinkProps = {
 
 const SmartLink = ({ link, url }: SmartLinkProps) => {
   const regEx = /^http/;
+  const router = useRouter();
 
   if (!regEx.test(url)) {
     return (
-      <Link href={url}>
+      <span onClick={() => router.push(url)}>
         <span>{link}</span>
-      </Link>
+      </span>
     );
   }
 

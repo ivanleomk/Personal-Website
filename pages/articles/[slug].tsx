@@ -1,7 +1,3 @@
-// import { useRouter } from "next/router";
-// import React from "react";
-// import { getSinglePost, getSortedPosts } from "../../lib/articles";
-
 import matter from "gray-matter";
 import { getAllPostSlugs, getPostdata } from "../../lib/articles";
 import { serialize } from "next-mdx-remote/serialize";
@@ -12,30 +8,7 @@ import PostTitle from "../../components/Post/PostTitle";
 import PostCategory from "../../components/Post/PostCategory";
 import { components } from "../../components/Layout/BlogLayout";
 
-// const Post = () => {
-//   return <div></div>;
-// };
-
-// export async function getStaticProps({ params }) {
-//   const router = useRouter();
-//   const { slug } = router.query;
-//   const slugId = slug as string;
-//   const post = await getSinglePost(slugId);
-//   return {
-//     props: { post },
-//   };
-// }
-
-// export async function getStaticPaths() {
-//   return {
-//     paths: getSortedPosts().map((post) => {
-//       slug: post.slug;
-//     }),
-//     fallback: false,
-//   };
-// }
-
-// export default Post;
+// TODO: Extract routes into a config file so that they're easily updated
 
 export default function Post({ source, frontMatter }) {
   const { title, description, categories, date } = frontMatter;
