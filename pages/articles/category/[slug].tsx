@@ -49,7 +49,10 @@ const CategoryPage = ({ articles }: CategoryPageProps) => {
       <main className="mb-auto divide-y divide-gray-200 dark:divide-gray-700">
         <div className="pt-6 py-10 space-y-2 md:space-y-5 ">
           {slug === "latest" ? null : (
-            <p onClick={() => router.push("/articles/category/latest")}>
+            <p
+              className="cursor-pointer"
+              onClick={() => router.push("/articles/category/latest")}
+            >
               ← See All Articles
             </p>
           )}
