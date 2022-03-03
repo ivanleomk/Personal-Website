@@ -1,0 +1,138 @@
+---
+title: "Getting Started"
+description: "What I think is a good and optimal way to break into Software Engineering"
+date: "2022-03-03"
+categories: ["Thoughts", "Software Engineering"]
+---
+
+# High Level Overview
+
+Modern Web Development is a tricky business because of the number of technologies and tools that have come up in the landscape. Most of these tools require a good amount of time and expertise in order to be considered proficient.
+
+On a high level overview, what you need to be able to demonstrate is that
+
+- You know how to design a system ( System Design )
+- You know how to solve algorithmic problems ( Data Structures )
+- You know how to write code using modern libraries ( Programming )
+- You need specific knowledge about frontend or backend stuff
+
+I'll be expanding a bit on each of these sections below.
+
+I've written a bit about these sections below in order that I think you should be approaching them in the first two months
+
+| Time    | Process         | Goal                                                                                                                                                                                               |
+| ------- | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2 days  | HTML and CSS    | Learn how web pages are structured                                                                                                                                                                 |
+| 1 week  | Javascript      | Learn how to write basic functions and how program logic is implemented                                                                                                                            |
+| 1 week  | React           | Learn how to write React components (Make sure to learn how to use functional components here)                                                                                                     |
+| 1 week  | Node            | Learn how to write Express.js code. I think express is the easiest thing to handle for a beginner and it's relatively no frills                                                                    |
+| 1 week  | Typescript      | Learn why typing matters                                                                                                                                                                           |
+| 4 weeks | Data Structures | Go through the MIT Course and slowly learn about the different ways to organise and store and work with data. At the end of this section you should be finished with Blind's 85 Leetcode Questions |
+
+## System Design
+
+> Estimated Time Required: 2 months
+
+This is a tricky business because System Design does not come naturally to most people. Therefore you'll really need to study this. There are two things you'll want to learn
+
+1. Edge Cases to think about
+2. Terminology to sound like an expert
+3. Specific tools to use
+
+Personally I'm still studying this myself in my free time so I'll be adding more to this soon
+
+# Introduction
+
+Generally here is the framework/process I would recommend to those starting out.
+
+Modern Web Development is a tricky business because of the multiple components that are involved in making the individual projects work. I've arranged a curriculumn which I think would be great to work through to get your hands dirty and wet.
+
+Refer to Table Of Contents above for a quick jump around.
+
+## Learn HTML and CSS
+
+> Estimated Time : 1-2 days
+
+Your main goal here is to just know what each individual tag means and to start working on simple pages.
+
+I suggest [Free Code Camp](https://www.freecodecamp.org/) as a good starting resource to understand what HTML/CSS/JS is.
+
+## Learn Javascript
+
+[Javascript](_archive/notes/Javascript.md) is the main language which underpins much of web development (Estimated Time : 1 Week)
+Your goal here is to learn about what is called ES6 syntax. Most of the modern react code that you've seen nowadays is written using ES6 Syntax. Key features to note is arrow functions, scope ( in the context of const, let and var) and doing basic algorithmic challenges to familarise yourself with simple concepts
+I also suggest [Free Code Camp](https://www.freecodecamp.org/) as a good resource. Skip their lengthy tutorials if you don't have time and try to get started on the individual algorithms quickly.
+
+If you've got more time, move on to [Leetcode](www.leetcode.com) and try some algorithmic challenges in javascript. Don't do anything too advanced here, your goal is to learn how to write code well and fast.
+
+## Learn React
+
+React is the main framework that we are using to generate our website.
+We are using a templating engine called JSX in React to generate actual HTML, CSS and vanilla Javascript ( normal javascript) code which is served to our website.
+
+Get used to writing some simple code in react. You want to make sure that you're comfortable writing up simple things like functional components, using things like context and some basic hooks
+
+```js
+// Sample Functional Component
+import React from "react";
+
+const App = () => {
+  return <div></div>;
+};
+
+export default App;
+```
+
+The hooks you'd want to make sure you understand are going to be
+
+1. UseState
+2. UseReducer
+3. UseContext
+4. UseRef
+
+These are the four basic hooks that make up a solid 90% of the entire app's stateful logic ( Logic that helps to manage and tracks bits of [State](_archive/notes/State.md) ).
+
+### Extensions
+
+If you have the time to explore a bit, I recommend taking a look at [Next JS](_archive/notes/Next%20JS.md)
+
+### Projects You Can Try
+
+1. Simple Counter App
+2. Simple To-Do List
+3. Simple To-Do List with Reducer
+4. Simple Counter App with Reducer
+5. Simple Counter App with Context
+
+Feel free to drop me a ping if you want me to review your code.
+
+## Learn Express
+
+We're currently using Express for the server-side framework. [Express JS](_archive/notes/Express%20JS.md) uses [Node JS](_archive/notes/Node%20JS.md) under the hood.
+
+## Learn Tailwind CSS
+
+I suggest learning tailwindCSS as a framework because it teaches you basic CSS and comes out of the box.
+
+There are plenty of follow-along code tutorials online if you wish to work with them so just google it
+
+## Learn Python
+
+Python is essential for the functioning of this app. It's mainly used for the crawler.
+
+I suggest [Automating The Boring Stuff](https://automatetheboringstuff.com/) as a good resource. I learnt python from there and there's a bunch of cool projects you can consider learning from.
+
+### Additional Resources
+
+- Consider Pydantic : A typed version of python ( I'm currently playing around with this )
+- Consider looking at FastAPI : This is an alternative to express that we can use.
+
+## Learning Design Patterns
+
+We'll be using a [Model View Controller](_archive/notes/Model%20View%20Controller.md)(MVC) pattern for our [Express JS](_archive/notes/Express%20JS.md) app.
+
+## Learning About Databases
+
+[Databases](_archive/notes/Databases.md) are important because they allow us to store and model the relations behind our database. We'll be using PostgresSQL for this project.
+
+# Appendix
