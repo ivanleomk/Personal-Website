@@ -1,28 +1,83 @@
 ---
-title: "Setting up my development enviroment ( 2022 Edition )"
+title: "Setting up my development enviroment"
 description: "A quick guide to get up and running with Software Engineering"
 date: "2022-05-27"
 categories: ["Technical", "Software Engineering"]
 display: true
 ---
 
-# What do I need from a development enviroment
+Here is the quick tl;dr version for you to get up and running if you just need a solution.
 
-Most of the time, what I work on are [Front-End Engineering](category/frontend-engineering) related tasks. I also use a mac so most of the good stuff I need is also built into xcode-tools.
+# Basic Tools
 
-# Basic Overview
-
-1. Install XCode Tools
+## Install XCode Tools
 
 ```js
 xcode-select --install
 topo
 ```
 
-2. Verify that Git is installed
+## Verify that Git is installed
 
 ```
 git -- version
 ```
 
-You should see
+You should see this output in the terminal once this is set-up
+
+```
+git version 2.24.3 (Apple Git-128)
+```
+
+## Install VSCode
+
+You can do so by heading to [the official website](https://code.visualstudio.com/) and downloading the build from them. This should allow you to get quickly set up.
+
+## Install Homebrew
+
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+You can verify that this is the correct command by looking at the official [Home Brew website](https://brew.sh).
+
+## Installing Node
+
+I've found that it's more useful to install NVM ( Node Version Manager ) instead of just plain old vanilla Node. This helps you to potentially avoid issues when working with packages which are built with older versions of node in mind. Here are the steps as follows
+
+- Install NVM
+
+```
+brew install nvm
+```
+
+- Install the version of NVM which you wish to use
+
+```
+nvm install node #installs the latest version of Node
+nvm install [specific version]
+```
+
+- Update your bashrc file
+
+```
+mkdir ~/.nvm
+vim ~/.bash_profile
+```
+
+and copy the following lines into your bash file
+
+```
+export NVM_DIR = ~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+```
+
+Once you've pasted these in, press `:wq` to exit and save the changes
+
+- Next configure a default version of node
+
+```
+nvm alias default [version_here]
+```
+
+where `[version_here]` stands for whichever version you'd like to configure as the default one. You can find a list of versions by using the command `nvm ls`.

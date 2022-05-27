@@ -12,13 +12,20 @@ const SmartLink = ({ link, url }: SmartLinkProps) => {
 
   if (!regEx.test(url)) {
     return (
-      <span onClick={() => router.push(url)}>
+      <span
+        className="mx-0.5 underline text-blue-300"
+        onClick={() => router.push(url)}
+      >
         <span>{link}</span>
       </span>
     );
   }
 
-  return <a href={url}>{link}</a>;
+  return (
+    <a className="mx-0.5 underline text-blue-300" href={url}>
+      {link}
+    </a>
+  );
 };
 
 export default SmartLink;

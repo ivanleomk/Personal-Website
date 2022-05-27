@@ -8,6 +8,7 @@ import PostTitle from "../../components/Post/PostTitle";
 import PostCategory from "../../components/Post/PostCategory";
 import { components } from "../../components/Layout/BlogLayout";
 import { redirect } from "next/dist/server/api-utils";
+import Head from "next/head";
 
 // TODO: Extract routes into a config file so that they're easily updated
 
@@ -15,7 +16,7 @@ export default function Post({ source, frontMatter }) {
   const { title, description, categories, date } = frontMatter;
   return (
     <article>
-      <Layout title={"Sample"}>
+      <Layout title={title}>
         <div>
           <div className="relative  bg-white overflow-hidden">
             <div className="relative px-4 sm:px-6 lg:px-8">
