@@ -7,6 +7,7 @@ import Link from "next/link";
 import PostTitle from "../../components/Post/PostTitle";
 import PostCategory from "../../components/Post/PostCategory";
 import { components } from "../../components/Layout/BlogLayout";
+import { redirect } from "next/dist/server/api-utils";
 
 // TODO: Extract routes into a config file so that they're easily updated
 
@@ -58,6 +59,15 @@ export async function getStaticProps({ params }) {
   const postContent = await getPostdata(params.slug);
   const { data, content } = matter(postContent);
   const mdxSource = await serialize(content, { scope: data });
+
+  const { display } = data;
+  if (!display) {
+    return {
+      redirect: {
+        destination: "/articles/category/latest",
+      },
+    };
+  }
 
   return {
     props: {
