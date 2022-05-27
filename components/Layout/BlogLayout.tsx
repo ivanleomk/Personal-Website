@@ -12,6 +12,8 @@ import Paragraph from "../../components/Articles/Paragraph";
 import Table from "../../components/Articles/Table";
 import Thead from "../../components/Articles/Thead";
 import THeadCell from "../../components/Articles/THeadCell";
+import SmartLink from "../SmartLink";
+import CodeBlock from "../CodeBlock";
 
 export const components = {
   table: Table,
@@ -28,6 +30,8 @@ export const components = {
   ul: (props) => <ListContainer ordered={false} {...props} />,
   li: ListItem,
   blockquote: Blockquote,
+  a: ({ href, children }) => <SmartLink url={href} link={children} />,
+  code: (props) => <CodeBlock {...props} />,
 };
 
 type metaProps = {
